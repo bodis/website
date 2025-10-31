@@ -1,0 +1,40 @@
+# Site settings
+title: Bodist's Documentation & Blog
+description: Technical documentation, blog posts, and presentations
+author: Bodist
+url: https://bodist.github.io
+baseurl: /website
+
+# Build settings
+markdown: kramdown
+permalink: /blog/:year/:month/:day/:title/
+
+# Exclude from processing
+exclude:
+  - .vscode/
+  - .claude/
+  - .git/
+  - .gitignore
+  - README.md
+  - large_contents/
+
+# Collections for different content types
+collections:
+  posts:
+    output: true
+    permalink: /blog/:year/:month/:day/:title/
+
+# Default layouts
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: "presentations"
+    values:
+      layout: null
+
+# Theme (optional - using minima as default)
+theme: minima

@@ -1,0 +1,57 @@
+---
+layout: default
+title: Home
+---
+
+<div class="home">
+  <h1>Welcome to Bodist's Documentation & Blog</h1>
+
+  <section style="margin: 40px 0;">
+    <h2>Content Sections</h2>
+
+    <div style="margin: 30px 0;">
+      <h3><a href="/website/blog/">📝 Blog</a></h3>
+      <p>Technical articles, tutorials, and thoughts on software development.</p>
+    </div>
+
+    <div style="margin: 30px 0;">
+      <h3>🎤 Presentations</h3>
+      <ul>
+        <li>
+          <a href="/website/presentations/20251031-ai-coding-mitigation-presentation/index.html">
+            AI-Assisted Coding: Mitigating Problems in Enterprise Development
+          </a>
+          <span style="color: #666; font-size: 0.9em;"> (October 31, 2025)</span>
+        </li>
+      </ul>
+    </div>
+
+    <div style="margin: 30px 0;">
+      <h3>📚 Large Content</h3>
+      <ul>
+        <li>
+          <a href="/website/large_contents/20251031_ai_assisted_coding_review.md">
+            AI-Assisted Coding in Enterprise: The Technical Leader's Implementation Guide
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section style="margin: 40px 0;">
+    <h2>Latest Blog Posts</h2>
+    <ul class="post-list">
+    {% for post in site.posts limit:5 %}
+      <li>
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+        <h3>
+          <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+        </h3>
+      </li>
+    {% endfor %}
+    </ul>
+    {% if site.posts.size == 0 %}
+      <p style="color: #666; font-style: italic;">No blog posts yet. Check back soon!</p>
+    {% endif %}
+  </section>
+</div>
