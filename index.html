@@ -9,355 +9,243 @@ title: Home
 </div>
 
 <div class="content-sections">
-  <section class="content-card">
-    <div class="card-icon">📝</div>
-    <h2><a href="{{ site.baseurl }}/blog/">Blog</a></h2>
-    <p>Technical articles, tutorials, and thoughts on software development, AI, and modern engineering practices.</p>
-    <a href="{{ site.baseurl }}/blog/" class="card-link">Explore articles →</a>
+  <section class="content-section">
+    <div class="section-header">
+      <h2><a href="{{ site.baseurl }}/blog/">Blog</a></h2>
+      <span class="section-count">{% if site.posts.size > 0 %}{{ site.posts.size }} post{% if site.posts.size != 1 %}s{% endif %}{% else %}No posts yet{% endif %}</span>
+    </div>
+    <p class="section-description">Technical articles, tutorials, and thoughts on software development, AI, and modern engineering practices.</p>
+
+    {% if site.posts.size > 0 %}
+    <ul class="content-list">
+      {% for post in site.posts limit:5 %}
+      <li>
+        <a href="{{ post.url | relative_url }}" class="content-link">
+          <span class="content-title">{{ post.title | escape }}</span>
+          <span class="content-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    {% if site.posts.size > 5 %}
+    <a href="{{ site.baseurl }}/blog/" class="view-all-link">View all posts →</a>
+    {% endif %}
+    {% else %}
+    <p class="empty-message">No blog posts yet. Check back soon!</p>
+    {% endif %}
   </section>
 
-  <section class="content-card">
-    <div class="card-icon">🎤</div>
-    <h2>Presentations</h2>
-    <p>Deep-dive presentations on complex technical topics with interactive visualizations.</p>
-    <div class="presentation-list">
-      <a href="{{ site.baseurl }}/presentations/20251031-ai-coding-mitigation-presentation/index.html" class="presentation-item">
-        <span class="presentation-title">AI-Assisted Coding: Mitigating Problems in Enterprise Development</span>
-        <span class="presentation-date">October 31, 2025</span>
-      </a>
+  <section class="content-section">
+    <div class="section-header">
+      <h2><a href="{{ site.baseurl }}/presentations/">Presentations</a></h2>
+      <span class="section-count">1 presentation</span>
     </div>
+    <p class="section-description">Deep-dive presentations on complex technical topics with interactive visualizations.</p>
+
+    <ul class="content-list">
+      <li>
+        <a href="{{ site.baseurl }}/presentations/20251031-ai-coding-mitigation-presentation/index.html" class="content-link">
+          <span class="content-title">AI-Assisted Coding: Mitigating Problems in Enterprise Development</span>
+          <span class="content-date">Oct 31, 2025</span>
+        </a>
+      </li>
+    </ul>
+    <a href="{{ site.baseurl }}/presentations/" class="view-all-link">View all presentations →</a>
   </section>
 
-  <section class="content-card">
-    <div class="card-icon">📚</div>
-    <h2>Documentation</h2>
-    <p>Comprehensive guides and research documents for technical leaders and engineers.</p>
-    <div class="doc-list">
-      <a href="{{ site.baseurl }}/large_contents/20251031_ai_assisted_coding_review.md" class="doc-item">
-        <span class="doc-title">AI-Assisted Coding in Enterprise</span>
-        <span class="doc-subtitle">The Technical Leader's Implementation Guide</span>
-      </a>
+  <section class="content-section">
+    <div class="section-header">
+      <h2>Documentation</h2>
+      <span class="section-count">1 document</span>
     </div>
+    <p class="section-description">Comprehensive guides and research documents for technical leaders and engineers.</p>
+
+    <ul class="content-list">
+      <li>
+        <a href="{{ site.baseurl }}/large_contents/20251031_ai_assisted_coding_review.md" class="content-link">
+          <span class="content-title">AI-Assisted Coding in Enterprise: The Technical Leader's Implementation Guide</span>
+          <span class="content-date">Oct 31, 2025</span>
+        </a>
+      </li>
+    </ul>
   </section>
 </div>
-
-{% if site.posts.size > 0 %}
-<section class="latest-posts">
-  <h2>Latest Blog Posts</h2>
-  <div class="post-preview-grid">
-    {% for post in site.posts limit:3 %}
-      <article class="post-preview-card">
-        <span class="preview-date">{{ post.date | date: "%b %-d, %Y" }}</span>
-        <h3>
-          <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-        </h3>
-        {% if post.excerpt %}
-          <p class="preview-excerpt">{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
-        {% endif %}
-        <a href="{{ post.url | relative_url }}" class="preview-link">Read more →</a>
-      </article>
-    {% endfor %}
-  </div>
-  <div class="view-all">
-    <a href="{{ site.baseurl }}/blog/" class="view-all-link">View all posts →</a>
-  </div>
-</section>
-{% else %}
-<section class="latest-posts">
-  <div class="no-posts">
-    <div class="no-posts-icon">✍️</div>
-    <p>No blog posts yet. Check back soon for new content!</p>
-  </div>
-</section>
-{% endif %}
 
 <style>
   .hero {
     text-align: center;
-    padding: 48px 0;
-    margin-bottom: 56px;
+    padding: 40px 0;
+    margin-bottom: 48px;
     border-bottom: 2px solid var(--border);
   }
 
   .hero h1 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(2rem, 5vw, 3rem);
     background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
   }
 
   .hero-subtitle {
-    font-size: clamp(1rem, 2.5vw, 1.375rem);
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
     color: var(--text-muted);
     font-weight: 300;
   }
 
   .content-sections {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 28px;
-    margin-bottom: 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
   }
 
-  .content-card {
+  .content-section {
     background: var(--bg-secondary);
     border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 32px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 12px;
+    padding: 28px;
+    transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
   }
 
-  .content-card::before {
+  .content-section::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(to right, var(--primary), var(--secondary));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--primary), var(--secondary));
+    opacity: 0;
+    transition: opacity 0.3s ease;
   }
 
-  .content-card:hover {
-    transform: translateY(-6px);
-    box-shadow:
-      0 20px 25px -5px var(--shadow),
-      0 10px 10px -5px var(--shadow);
+  .content-section:hover {
     border-color: var(--primary);
   }
 
-  .content-card:hover::before {
-    transform: scaleX(1);
+  .content-section:hover::before {
+    opacity: 1;
   }
 
-  .card-icon {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    opacity: 0.9;
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 12px;
+    gap: 16px;
+    flex-wrap: wrap;
   }
 
-  .content-card h2 {
+  .section-header h2 {
     font-size: 1.75rem;
-    margin: 16px 0 12px;
+    margin: 0;
   }
 
-  .content-card h2 a {
+  .section-header h2 a {
     color: var(--text-primary);
     text-decoration: none;
     transition: color 0.3s ease;
   }
 
-  .content-card h2 a:hover {
+  .section-header h2 a:hover {
     color: var(--primary);
   }
 
-  .content-card > p {
-    color: var(--text-secondary);
-    line-height: 1.7;
-    margin-bottom: 20px;
-  }
-
-  .card-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--primary);
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    margin-top: 16px;
-  }
-
-  .card-link:hover {
-    color: var(--accent);
-    gap: 12px;
-  }
-
-  .presentation-list,
-  .doc-list {
-    margin-top: 20px;
-  }
-
-  .presentation-item,
-  .doc-item {
-    display: block;
-    padding: 16px;
-    background: rgba(102, 126, 234, 0.05);
-    border: 1px solid rgba(102, 126, 234, 0.2);
-    border-radius: 10px;
-    margin: 12px 0;
-    text-decoration: none;
-    transition: all 0.3s ease;
-  }
-
-  .presentation-item:hover,
-  .doc-item:hover {
-    background: rgba(102, 126, 234, 0.1);
-    border-color: var(--primary);
-    transform: translateX(4px);
-  }
-
-  .presentation-title,
-  .doc-title {
-    display: block;
-    color: var(--text-primary);
-    font-weight: 600;
-    margin-bottom: 4px;
-  }
-
-  .presentation-date {
-    display: block;
-    color: var(--text-muted);
-    font-size: 0.875rem;
-  }
-
-  .doc-subtitle {
-    display: block;
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-  }
-
-  .latest-posts {
-    margin-top: 64px;
-    padding-top: 48px;
-    border-top: 2px solid var(--border);
-  }
-
-  .latest-posts h2 {
-    text-align: center;
-    font-size: clamp(2rem, 4vw, 2.5rem);
-    margin-bottom: 40px;
-    background: linear-gradient(to right, var(--text-primary), var(--primary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .post-preview-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-    margin-bottom: 32px;
-  }
-
-  .post-preview-card {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px;
-    transition: all 0.3s ease;
-  }
-
-  .post-preview-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 20px -5px var(--shadow);
-    border-color: var(--primary);
-  }
-
-  .preview-date {
-    display: block;
+  .section-count {
     color: var(--text-muted);
     font-size: 0.875rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin-bottom: 12px;
   }
 
-  .post-preview-card h3 {
-    font-size: 1.25rem;
-    margin: 12px 0;
-  }
-
-  .post-preview-card h3 a {
-    color: var(--text-primary);
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-
-  .post-preview-card:hover h3 a {
-    color: var(--primary);
-  }
-
-  .preview-excerpt {
+  .section-description {
     color: var(--text-secondary);
-    line-height: 1.6;
-    margin: 12px 0;
-    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 20px;
   }
 
-  .preview-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    color: var(--primary);
-    font-weight: 600;
+  .content-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .content-list li {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .content-list li:last-child {
+    border-bottom: none;
+  }
+
+  .content-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    padding: 16px 0;
     text-decoration: none;
-    font-size: 0.9rem;
-    margin-top: 12px;
     transition: all 0.3s ease;
   }
 
-  .preview-link:hover {
-    color: var(--accent);
-    gap: 10px;
+  .content-link:hover {
+    padding-left: 12px;
   }
 
-  .view-all {
-    text-align: center;
-    margin-top: 32px;
+  .content-title {
+    color: var(--text-primary);
+    font-weight: 500;
+    flex: 1;
+    transition: color 0.3s ease;
+  }
+
+  .content-link:hover .content-title {
+    color: var(--primary);
+  }
+
+  .content-date {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    white-space: nowrap;
+    font-weight: 500;
   }
 
   .view-all-link {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 14px 32px;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: white;
+    color: var(--primary);
     font-weight: 600;
     text-decoration: none;
-    border-radius: 10px;
+    margin-top: 16px;
+    font-size: 0.95rem;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 6px -1px var(--shadow);
   }
 
   .view-all-link:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 15px -3px var(--shadow);
+    color: var(--accent);
     gap: 12px;
   }
 
-  .no-posts {
-    text-align: center;
-    padding: 80px 20px;
-  }
-
-  .no-posts-icon {
-    font-size: 5rem;
-    margin-bottom: 20px;
-    opacity: 0.5;
-  }
-
-  .no-posts p {
+  .empty-message {
     color: var(--text-muted);
-    font-size: 1.125rem;
     font-style: italic;
+    padding: 20px 0;
   }
 
   @media (max-width: 768px) {
-    .content-sections {
-      grid-template-columns: 1fr;
+    .content-link {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
     }
 
-    .post-preview-grid {
-      grid-template-columns: 1fr;
+    .content-date {
+      font-size: 0.8rem;
     }
   }
 </style>
