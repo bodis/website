@@ -3,55 +3,361 @@ layout: default
 title: Home
 ---
 
-<div class="home">
-  <h1>Welcome to Bodist's Documentation & Blog</h1>
+<div class="hero">
+  <h1 style="margin-top: 0;">Welcome to Bodist's Documentation & Blog</h1>
+  <p class="hero-subtitle">Technical insights, presentations, and documentation</p>
+</div>
 
-  <section style="margin: 40px 0;">
-    <h2>Content Sections</h2>
+<div class="content-sections">
+  <section class="content-card">
+    <div class="card-icon">📝</div>
+    <h2><a href="{{ site.baseurl }}/blog/">Blog</a></h2>
+    <p>Technical articles, tutorials, and thoughts on software development, AI, and modern engineering practices.</p>
+    <a href="{{ site.baseurl }}/blog/" class="card-link">Explore articles →</a>
+  </section>
 
-    <div style="margin: 30px 0;">
-      <h3><a href="/website/blog/">📝 Blog</a></h3>
-      <p>Technical articles, tutorials, and thoughts on software development.</p>
-    </div>
-
-    <div style="margin: 30px 0;">
-      <h3>🎤 Presentations</h3>
-      <ul>
-        <li>
-          <a href="/website/presentations/20251031-ai-coding-mitigation-presentation/index.html">
-            AI-Assisted Coding: Mitigating Problems in Enterprise Development
-          </a>
-          <span style="color: #666; font-size: 0.9em;"> (October 31, 2025)</span>
-        </li>
-      </ul>
-    </div>
-
-    <div style="margin: 30px 0;">
-      <h3>📚 Large Content</h3>
-      <ul>
-        <li>
-          <a href="/website/large_contents/20251031_ai_assisted_coding_review.md">
-            AI-Assisted Coding in Enterprise: The Technical Leader's Implementation Guide
-          </a>
-        </li>
-      </ul>
+  <section class="content-card">
+    <div class="card-icon">🎤</div>
+    <h2>Presentations</h2>
+    <p>Deep-dive presentations on complex technical topics with interactive visualizations.</p>
+    <div class="presentation-list">
+      <a href="{{ site.baseurl }}/presentations/20251031-ai-coding-mitigation-presentation/index.html" class="presentation-item">
+        <span class="presentation-title">AI-Assisted Coding: Mitigating Problems in Enterprise Development</span>
+        <span class="presentation-date">October 31, 2025</span>
+      </a>
     </div>
   </section>
 
-  <section style="margin: 40px 0;">
-    <h2>Latest Blog Posts</h2>
-    <ul class="post-list">
-    {% for post in site.posts limit:5 %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-        <h3>
-          <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-        </h3>
-      </li>
-    {% endfor %}
-    </ul>
-    {% if site.posts.size == 0 %}
-      <p style="color: #666; font-style: italic;">No blog posts yet. Check back soon!</p>
-    {% endif %}
+  <section class="content-card">
+    <div class="card-icon">📚</div>
+    <h2>Documentation</h2>
+    <p>Comprehensive guides and research documents for technical leaders and engineers.</p>
+    <div class="doc-list">
+      <a href="{{ site.baseurl }}/large_contents/20251031_ai_assisted_coding_review.md" class="doc-item">
+        <span class="doc-title">AI-Assisted Coding in Enterprise</span>
+        <span class="doc-subtitle">The Technical Leader's Implementation Guide</span>
+      </a>
+    </div>
   </section>
 </div>
+
+{% if site.posts.size > 0 %}
+<section class="latest-posts">
+  <h2>Latest Blog Posts</h2>
+  <div class="post-preview-grid">
+    {% for post in site.posts limit:3 %}
+      <article class="post-preview-card">
+        <span class="preview-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+        <h3>
+          <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+        </h3>
+        {% if post.excerpt %}
+          <p class="preview-excerpt">{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
+        {% endif %}
+        <a href="{{ post.url | relative_url }}" class="preview-link">Read more →</a>
+      </article>
+    {% endfor %}
+  </div>
+  <div class="view-all">
+    <a href="{{ site.baseurl }}/blog/" class="view-all-link">View all posts →</a>
+  </div>
+</section>
+{% else %}
+<section class="latest-posts">
+  <div class="no-posts">
+    <div class="no-posts-icon">✍️</div>
+    <p>No blog posts yet. Check back soon for new content!</p>
+  </div>
+</section>
+{% endif %}
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 48px 0;
+    margin-bottom: 56px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.375rem);
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  .content-sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+    margin-bottom: 64px;
+  }
+
+  .content-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .content-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .content-card:hover {
+    transform: translateY(-6px);
+    box-shadow:
+      0 20px 25px -5px var(--shadow),
+      0 10px 10px -5px var(--shadow);
+    border-color: var(--primary);
+  }
+
+  .content-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .card-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    opacity: 0.9;
+  }
+
+  .content-card h2 {
+    font-size: 1.75rem;
+    margin: 16px 0 12px;
+  }
+
+  .content-card h2 a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .content-card h2 a:hover {
+    color: var(--primary);
+  }
+
+  .content-card > p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-top: 16px;
+  }
+
+  .card-link:hover {
+    color: var(--accent);
+    gap: 12px;
+  }
+
+  .presentation-list,
+  .doc-list {
+    margin-top: 20px;
+  }
+
+  .presentation-item,
+  .doc-item {
+    display: block;
+    padding: 16px;
+    background: rgba(102, 126, 234, 0.05);
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    border-radius: 10px;
+    margin: 12px 0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .presentation-item:hover,
+  .doc-item:hover {
+    background: rgba(102, 126, 234, 0.1);
+    border-color: var(--primary);
+    transform: translateX(4px);
+  }
+
+  .presentation-title,
+  .doc-title {
+    display: block;
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .presentation-date {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+  }
+
+  .doc-subtitle {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+
+  .latest-posts {
+    margin-top: 64px;
+    padding-top: 48px;
+    border-top: 2px solid var(--border);
+  }
+
+  .latest-posts h2 {
+    text-align: center;
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    margin-bottom: 40px;
+    background: linear-gradient(to right, var(--text-primary), var(--primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .post-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  .post-preview-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.3s ease;
+  }
+
+  .post-preview-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 20px -5px var(--shadow);
+    border-color: var(--primary);
+  }
+
+  .preview-date {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+
+  .post-preview-card h3 {
+    font-size: 1.25rem;
+    margin: 12px 0;
+  }
+
+  .post-preview-card h3 a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .post-preview-card:hover h3 a {
+    color: var(--primary);
+  }
+
+  .preview-excerpt {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 12px 0;
+    font-size: 0.95rem;
+  }
+
+  .preview-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-top: 12px;
+    transition: all 0.3s ease;
+  }
+
+  .preview-link:hover {
+    color: var(--accent);
+    gap: 10px;
+  }
+
+  .view-all {
+    text-align: center;
+    margin-top: 32px;
+  }
+
+  .view-all-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 32px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px var(--shadow);
+  }
+
+  .view-all-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px var(--shadow);
+    gap: 12px;
+  }
+
+  .no-posts {
+    text-align: center;
+    padding: 80px 20px;
+  }
+
+  .no-posts-icon {
+    font-size: 5rem;
+    margin-bottom: 20px;
+    opacity: 0.5;
+  }
+
+  .no-posts p {
+    color: var(--text-muted);
+    font-size: 1.125rem;
+    font-style: italic;
+  }
+
+  @media (max-width: 768px) {
+    .content-sections {
+      grid-template-columns: 1fr;
+    }
+
+    .post-preview-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
