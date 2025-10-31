@@ -16,7 +16,6 @@ exclude:
   - .git/
   - .gitignore
   - README.md
-  - blogs/
 
 # Collections for different content types
 collections:
@@ -34,6 +33,6 @@ defaults:
   - scope:
       path: "presentations"
     values:
-      layout: null
+      layout: false
 
 # Using custom layouts instead of theme
