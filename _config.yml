@@ -16,7 +16,7 @@ exclude:
   - .git/
   - .gitignore
   - README.md
-  - large_contents/
+  - blogs/
 
 # Collections for different content types
 collections:
@@ -36,5 +36,4 @@ defaults:
     values:
       layout: null
 
-# Theme (optional - using minima as default)
-theme: minima
+# Using custom layouts instead of theme
