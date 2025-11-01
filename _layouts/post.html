@@ -211,18 +211,19 @@ layout: default
     align-items: center;
     gap: 8px;
     padding: 12px 24px;
-    background: rgba(102, 126, 234, 0.1);
-    color: var(--primary);
+    background: var(--primary);
+    color: white;
     border-radius: 8px;
     font-weight: 600;
     transition: all 0.3s ease;
-    border: 1px solid rgba(102, 126, 234, 0.2);
+    border: 1px solid var(--primary);
   }
 
   .back-link:hover {
-    background: rgba(102, 126, 234, 0.2);
+    background: var(--primary-dark);
     transform: translateX(-4px);
-    border-color: var(--primary);
+    border-color: var(--primary-dark);
+    color: white;
   }
 
   /* Reading progress indicator */
