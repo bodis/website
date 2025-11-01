@@ -5,7 +5,7 @@ date: 2025-11-01 00:00:00 +0000
 categories: ai development security
 ---
 
-The productivity narrative around AI coding tools misses a critical detail: Georgetown CSET's analysis found exploitable vulnerabilities in 47% of code from major LLMs—a rate that hasn't improved in two years. METR's controlled study showed experienced developers actually slowed down 19% using Claude 3.5 on real codebases, despite predicting they'd get 24% faster.
+The productivity narrative around AI coding tools misses a critical detail: [Georgetown CSET's analysis](https://cset.georgetown.edu/publication/cybersecurity-risks-of-ai-generated-code/) found exploitable vulnerabilities in 47% of code from major LLMs—a rate that hasn't improved in two years. [METR's controlled study](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/) showed experienced developers actually slowed down 19% using Claude 3.5 on real codebases, despite predicting they'd get 24% faster.
 
 ![AI Coding Hype]({{ site.baseurl }}/assets/images/posts/2025-11-01-ai-coding-reality-check/presentation1.webp)
 *The marketing pitch: "Look at AI go! We're building bigger and faster than ever before!" Meanwhile, the engineering team runs for cover.*
@@ -16,7 +16,7 @@ The gap between marketing and reality centers on three problems that don't solve
 
 ### Security: The Vulnerability Rate Problem
 
-CodeSecEval's study across 80 tasks and 4 languages showed only 55% of AI-generated code was secure. The concerning pattern: security performance hasn't improved as models get better at syntactic correctness. Turns out, larger models don't generate more secure code—they just generate insecure code faster.
+[CodeSecEval's study](https://arxiv.org/html/2407.02395v1) across 80 tasks and 4 languages showed only 55% of AI-generated code was secure. The concerning pattern: security performance hasn't improved as models get better at syntactic correctness. Turns out, larger models don't generate more secure code—they just generate insecure code faster.
 
 The vulnerability distribution follows CWE Top 25 patterns, but with AI-specific characteristics. Missing input validation appears most frequently—SQL injection failures at 20%, log injection at 88% insecure rate. The interesting failure mode is context blindness: AI generates validation for one input path while missing parallel paths in the same function.
 
@@ -26,7 +26,7 @@ The operational impact: 68% of developers report spending more time on security 
 
 ### Architecture: Drift Without Understanding
 
-GitClear's analysis of 211 million lines of code shows copy-pasted code rising from 8.3% to 12.3% between 2021-2024, while refactoring dropped from 25% to under 10%. The pattern creates "shotgun surgery" antipatterns where any change requires editing dozens of files.
+[GitClear's analysis](https://medium.com/@equant/coding-on-copilot-985bd6509d8a) of 211 million lines of code shows copy-pasted code rising from 8.3% to 12.3% between 2021-2024, while refactoring dropped from 25% to under 10%. The pattern creates "shotgun surgery" antipatterns where any change requires editing dozens of files.
 
 AI lacks understanding of system boundaries, scaling constraints, and organizational patterns. It generates contextually correct code without considering existing abstractions. The "Lost in the Middle" problem means LLMs degrade performance for information in middle positions of long contexts—architectural constraints mentioned early in sessions get deprioritized as conversations progress.
 
@@ -38,9 +38,9 @@ The architectural debt manifests as import explosion (entire new packages instea
 
 The "almost right, but not quite" issue frustrates 66% of developers. Code compiles, passes type checking, and looks syntactically correct but contains subtle semantic flaws. Error handling exists but doesn't cover edge cases. Validation appears present but misses parallel code paths. It's the software equivalent of a cake that looks perfect but tastes like cardboard.
 
-Acceptance rates serve as poor metrics when they count problematic acceptances equally with good ones. Zoominfo's deployment showed 33% acceptance rate correlating with 20% median time savings, but METR's study showed 75% of developers read every line of AI code and 56% made major modifications. The gap: what developers accept versus what reaches production unchanged.
+Acceptance rates serve as poor metrics when they count problematic acceptances equally with good ones. [Zoominfo's deployment](https://arxiv.org/html/2501.13282v1) showed 33% acceptance rate correlating with 20% median time savings, but [METR's study](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/) showed 75% of developers read every line of AI code and 56% made major modifications. The gap: what developers accept versus what reaches production unchanged.
 
-Stack Overflow's survey found 38% report AI provides inaccurate information more than half the time, yet only 42% trust AI accuracy. The paradox drives acceptance of code developers don't fully understand because it compiles and passes tests. Junior developers particularly lack the mental models to spot where bugs lurk.
+[Stack Overflow's survey](https://survey.stackoverflow.co/2024/ai) found 38% report AI provides inaccurate information more than half the time, yet only 42% trust AI accuracy. The paradox drives acceptance of code developers don't fully understand because it compiles and passes tests. Junior developers particularly lack the mental models to spot where bugs lurk.
 
 ## Technical Mitigation Architecture
 
@@ -87,11 +87,11 @@ Training focus should emphasize when NOT to use AI rather than how to use it. Ju
 
 Successful deployments follow a pattern: establish baseline metrics before AI introduction, choose appropriate use cases (new code in established languages, test generation, documentation—not legacy refactoring), implement lightweight governance with clear marking and architectural review requirements, and measure continuously.
 
-Zoominfo's 400-developer rollout demonstrated methodical adoption through phased expansion from five engineers to full deployment. Quantitative results: 33% average acceptance rate, 6,500 suggestions daily generating 15,000 lines, with TypeScript/Java/Python showing ~30% acceptance. Developer satisfaction reached 72%, median 20% time savings, with 63% completing more tasks per sprint.
+[Zoominfo's 400-developer rollout](https://arxiv.org/html/2501.13282v1) demonstrated methodical adoption through phased expansion from five engineers to full deployment. Quantitative results: 33% average acceptance rate, 6,500 suggestions daily generating 15,000 lines, with TypeScript/Java/Python showing ~30% acceptance. Developer satisfaction reached 72%, median 20% time savings, with 63% completing more tasks per sprint.
 
-Accenture's randomized controlled trial showed 55% faster task completion with 90% job fulfillment increases. Critical findings: 8.69% increase in pull requests, 15% increase in PR merge rate, 84% increase in successful builds, and 88% character retention rate in editor. The study demonstrates AI doesn't sacrifice quality for speed when properly integrated.
+[Accenture's randomized controlled trial](https://github.blog/news-insights/research/research-quantifying-github-copilots-impact-in-the-enterprise-with-accenture/) showed 55% faster task completion with 90% job fulfillment increases. Critical findings: 8.69% increase in pull requests, 15% increase in PR merge rate, 84% increase in successful builds, and 88% character retention rate in editor. The study demonstrates AI doesn't sacrifice quality for speed when properly integrated.
 
-METR's study provides contrast: experienced developers using Cursor Pro with Claude 3.5/3.7 on 246 tasks in mature codebases showed 19% slowdown despite predicting 24% speedup. Developers accepted less than 44% of AI code, with 75% reading every line and 56% making major modifications. Context determines outcomes—simple tasks show gains over 30%, complex tasks under 10%.
+[METR's study](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/) provides contrast: experienced developers using Cursor Pro with Claude 3.5/3.7 on 246 tasks in mature codebases showed 19% slowdown despite predicting 24% speedup. Developers accepted less than 44% of AI code, with 75% reading every line and 56% making major modifications. Context determines outcomes—simple tasks show gains over 30%, complex tasks under 10%.
 
 The measurement framework requires both leading indicators (developer satisfaction, acceptance rate telemetry) and lagging indicators (pull request throughput, cycle time, defect rates) using SPACE dimensions. Don't rely solely on self-reported productivity—verify with objective metrics. Google DORA found every 25% increase in AI adoption produced a 1.5% dip in delivery speed and 7.2% drop in system stability, despite 75% feeling more productive. Feeling fast and being fast are two different things.
 
