@@ -7,7 +7,7 @@ categories: ai development security
 
 The productivity narrative around AI coding tools misses a critical detail: Georgetown CSET's analysis found exploitable vulnerabilities in 47% of code from major LLMs—a rate that hasn't improved in two years. METR's controlled study showed experienced developers actually slowed down 19% using Claude 3.5 on real codebases, despite predicting they'd get 24% faster.
 
-![AI Coding Hype](presentation1.webp)
+![AI Coding Hype]({{ site.baseurl }}/assets/images/posts/2025-11-01-ai-coding-reality-check/presentation1.webp)
 *The marketing pitch: "Look at AI go! We're building bigger and faster than ever before!" Meanwhile, the engineering team runs for cover.*
 
 The gap between marketing and reality centers on three problems that don't solve themselves: systematic security vulnerabilities, accelerated architecture drift, and inadequate review processes. Organizations treating this as just a tooling problem fail. Those treating it as a systems integration challenge see 10-30% genuine productivity gains.
@@ -44,7 +44,7 @@ Stack Overflow's survey found 38% report AI provides inaccurate information more
 
 ## Technical Mitigation Architecture
 
-![AI Mitigation Strategy](presentation2.webp)
+![AI Mitigation Strategy]({{ site.baseurl }}/assets/images/posts/2025-11-01-ai-coding-reality-check/presentation2.webp)
 *"Faster! More efficient! The future is now!" Meanwhile, we're deploying the same assembly line approach to code quality that we've always needed—just with shinier AI labels.*
 
 ### Multi-Layer Defense Pattern

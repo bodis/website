@@ -12,11 +12,10 @@ title: Blog
   <div class="post-grid">
     {% for post in site.posts %}
       <article class="post-card">
-        {% assign post_dir = post.path | remove: 'index.md' %}
-        {% assign thumbnail_path = post_dir | append: 'thumbnail.jpg' %}
-        {% assign thumbnail_url = '/' | append: thumbnail_path | relative_url %}
+        {% assign post_slug = post.path | remove: '_posts/' | remove: '/index.md' %}
+        {% assign thumbnail_url = site.baseurl | append: '/assets/images/posts/' | append: post_slug | append: '/thumbnail.jpg' %}
 
-        {% if post_dir contains '_posts/' %}
+        {% if post.path contains '/index.md' %}
           <div class="post-thumbnail">
             <a href="{{ post.url | relative_url }}">
               <img src="{{ thumbnail_url }}" alt="{{ post.title }}" loading="lazy">

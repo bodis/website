@@ -23,12 +23,6 @@ collections:
     output: true
     permalink: /blog/:year/:month/:day/:title/
 
-# Include post assets in build
-include:
-  - _posts/*/*.webp
-  - _posts/*/*.jpg
-  - _posts/*/*.png
-
 # Default layouts
 defaults:
   - scope:

@@ -31,12 +31,12 @@ GitHub Pages automatically builds and deploys on push to `main` branch. Check th
 1. **Blog Posts** (`_posts/`)
    - Each post has its own subdirectory: `_posts/YYYY-MM-DD-title/`
    - Post content in `index.md` with YAML front matter
-   - Post assets (images, thumbnails) stored in same directory
+   - Post assets stored separately in `assets/images/posts/YYYY-MM-DD-title/`
    - Automatically processed by Jekyll
    - Published at: `/blog/YYYY/MM/DD/title/`
    - Use `post` layout
-   - **Thumbnail support**: Add `thumbnail.jpg` to post directory for blog listing page
-   - Images referenced in posts use relative paths (e.g., `![Alt](image.webp)`)
+   - **Thumbnail support**: Add `thumbnail.jpg` to `assets/images/posts/YYYY-MM-DD-title/` for blog listing
+   - Images referenced using: `![Alt]({{ site.baseurl }}/assets/images/posts/YYYY-MM-DD-title/image.webp)`
 
 2. **Presentations** (`presentations/`)
    - Self-contained HTML files with embedded CSS/JS
@@ -67,7 +67,6 @@ GitHub Pages automatically builds and deploys on push to `main` branch. Check th
 - Permalink structure for blog posts
 - Jekyll processing exclusions (`.vscode/`, `.claude/`, `README.md`)
 - Layout defaults for posts and presentations
-- Include directives for post assets (`_posts/*/*.webp`, `_posts/*/*.jpg`, `_posts/*/*.png`)
 
 ### URL Structure
 
@@ -82,7 +81,7 @@ All internal links must use `{{ site.baseurl }}` to work correctly:
 
 ### New Blog Post
 
-1. Create directory: `_posts/YYYY-MM-DD-descriptive-title/`
+1. Create post directory: `_posts/YYYY-MM-DD-descriptive-title/`
 2. Create `index.md` in that directory with YAML front matter:
    ```markdown
    ---
@@ -94,10 +93,11 @@ All internal links must use `{{ site.baseurl }}` to work correctly:
 
    Content here...
    ```
-3. Add `thumbnail.jpg` (recommended) for blog listing page display
-4. Add any post-specific images to the same directory
-5. Reference images in markdown using relative paths: `![Description](image.webp)`
-6. Update home page listing count if needed in `index.html`
+3. Create assets directory: `assets/images/posts/YYYY-MM-DD-descriptive-title/`
+4. Add `thumbnail.jpg` (recommended) to assets directory for blog listing page
+5. Add any post-specific images to the assets directory
+6. Reference images using: `![Description]({{ site.baseurl }}/assets/images/posts/YYYY-MM-DD-descriptive-title/image.webp)`
+7. Update home page listing count if needed in `index.html`
 
 ### New Presentation
 
