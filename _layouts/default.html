@@ -45,9 +45,9 @@
             color: var(--text-primary);
             background: var(--bg-main);
             background-image: url('{{ site.baseurl }}/assets/images/header.webp');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            background-size: auto 60%;
+            background-position: center center;
+            background-repeat: repeat-x;
             background-attachment: fixed;
             min-height: 100vh;
             position: relative;
@@ -86,7 +86,7 @@
             align-items: stretch;
             justify-content: space-between;
             gap: 32px;
-            min-height: 100px;
+            min-height: 120px;
         }
 
         .header-branding {
@@ -96,7 +96,7 @@
         }
 
         .header-image {
-            height: 100px;
+            height: 120px;
             width: auto;
             object-fit: contain;
             flex-shrink: 0;
@@ -104,7 +104,7 @@
         }
 
         .header-title {
-            font-size: 1.75rem;
+            font-size: 2rem;
             font-weight: 700;
             background: linear-gradient(to right, var(--primary), var(--accent));
             -webkit-background-clip: text;

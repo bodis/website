@@ -26,10 +26,19 @@ layout: default
 </article>
 
 <style>
+  .post-header {
+    background: var(--bg-secondary);
+    padding: 32px;
+    border-radius: 12px;
+    margin: -48px -48px 32px -48px;
+    border-bottom: 2px solid var(--border);
+  }
+
   .post-header h1 {
     font-size: clamp(2rem, 4vw, 2.75rem);
     margin-bottom: 16px;
     line-height: 1.2;
+    margin-top: 0;
   }
 
   .post-meta {
@@ -40,9 +49,7 @@ layout: default
     color: var(--text-muted);
     font-size: 0.95rem;
     font-weight: 500;
-    padding-bottom: 24px;
-    margin-bottom: 32px;
-    border-bottom: 2px solid var(--border);
+    margin: 0;
   }
 
   .category {
@@ -235,6 +242,13 @@ layout: default
   @keyframes reading-progress {
     to {
       width: 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .post-header {
+      margin: -28px -28px 24px -28px;
+      padding: 24px;
     }
   }
 </style>
