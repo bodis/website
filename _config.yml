@@ -22,6 +22,9 @@ collections:
   posts:
     output: true
     permalink: /blog/:year/:month/:day/:title/
+  docs:
+    output: true
+    permalink: /docs/:path/
 
 # Default layouts
 defaults:
@@ -30,6 +33,11 @@ defaults:
       type: "posts"
     values:
       layout: "post"
+  - scope:
+      path: ""
+      type: "docs"
+    values:
+      layout: "default"
   - scope:
       path: "presentations"
     values:
