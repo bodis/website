@@ -46,15 +46,39 @@
         /* Header */
         header {
             background: var(--bg-secondary);
-            padding: 20px 0;
+            padding: 0;
             border-bottom: 1px solid var(--border);
         }
 
-        header h1 {
-            font-size: 1.5rem;
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            min-height: 80px;
+        }
+
+        .header-image {
+            height: 80px;
+            width: auto;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .header-title {
+            font-size: 2rem;
             font-weight: 700;
-            color: var(--text-primary);
-            letter-spacing: -0.01em;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+            margin: 0;
+            flex-shrink: 0;
+        }
+
+        header h1 {
+            display: none;
         }
 
         header p {
@@ -263,8 +287,17 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            header {
-                padding: 40px 0;
+            .header-content {
+                min-height: 60px;
+                gap: 16px;
+            }
+
+            .header-image {
+                height: 60px;
+            }
+
+            .header-title {
+                font-size: 1.5rem;
             }
 
             main {
@@ -279,6 +312,16 @@
             nav a {
                 padding: 16px 20px;
                 font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-image {
+                height: 50px;
+            }
+
+            .header-title {
+                font-size: 1.25rem;
             }
         }
 
@@ -313,7 +356,11 @@
 <body>
     <header>
         <div class="container">
-            <h1>{{ site.title }}</h1>
+            <div class="header-content">
+                <img src="{{ site.baseurl }}/assets/images/header.webp" alt="Development Lifecycle" class="header-image">
+                <h1 class="header-title">Bodis TechPages</h1>
+            </div>
+            <h1 style="display: none;">{{ site.title }}</h1>
             <p>{{ site.description }}</p>
         </div>
     </header>
