@@ -12,28 +12,42 @@ title: Blog
   <div class="post-grid">
     {% for post in site.posts %}
       <article class="post-card">
-        <div class="post-card-header">
-          <span class="post-date">{{ post.date | date: "%B %-d, %Y" }}</span>
-          {% if post.categories.size > 0 %}
-            <div class="post-categories">
-              {% for category in post.categories limit:2 %}
-                <span class="category-badge">{{ category }}</span>
-              {% endfor %}
-            </div>
-          {% endif %}
-        </div>
+        {% assign post_dir = post.path | remove: 'index.md' %}
+        {% assign thumbnail_path = post_dir | append: 'thumbnail.jpg' %}
+        {% assign thumbnail_url = '/' | append: thumbnail_path | relative_url %}
 
-        <h2 class="post-card-title">
-          <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
-        </h2>
-
-        {% if post.excerpt %}
-          <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+        {% if post_dir contains '_posts/' %}
+          <div class="post-thumbnail">
+            <a href="{{ post.url | relative_url }}">
+              <img src="{{ thumbnail_url }}" alt="{{ post.title }}" loading="lazy">
+            </a>
+          </div>
         {% endif %}
 
-        <a href="{{ post.url | relative_url }}" class="read-more">
-          Read more →
-        </a>
+        <div class="post-card-content">
+          <div class="post-card-header">
+            <span class="post-date">{{ post.date | date: "%B %-d, %Y" }}</span>
+            {% if post.categories.size > 0 %}
+              <div class="post-categories">
+                {% for category in post.categories limit:2 %}
+                  <span class="category-badge">{{ category }}</span>
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+
+          <h2 class="post-card-title">
+            <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+          </h2>
+
+          {% if post.excerpt %}
+            <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+          {% endif %}
+
+          <a href="{{ post.url | relative_url }}" class="read-more">
+            Read more →
+          </a>
+        </div>
       </article>
     {% endfor %}
   </div>
@@ -78,12 +92,43 @@ title: Blog
     background: var(--bg-secondary);
     border: 1px solid var(--border);
     border-radius: 16px;
-    padding: 28px;
+    padding: 0;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     display: flex;
     flex-direction: column;
     overflow: hidden;
+  }
+
+  .post-thumbnail {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: var(--bg-main);
+  }
+
+  .post-thumbnail a {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .post-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .post-card:hover .post-thumbnail img {
+    transform: scale(1.05);
+  }
+
+  .post-card-content {
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
   }
 
   .post-card::before {

@@ -1,8 +1,8 @@
 # Site settings
-title: Bodist's Documentation & Blog
+title: BodisT pages
 description: Technical documentation, blog posts, and presentations
-author: Bodist
-url: https://bodist.github.io
+author: Tamas Bodis
+url: https://bodis.github.io
 baseurl: /website
 
 # Build settings
@@ -22,6 +22,12 @@ collections:
   posts:
     output: true
     permalink: /blog/:year/:month/:day/:title/
+
+# Include post assets in build
+include:
+  - _posts/*/*.webp
+  - _posts/*/*.jpg
+  - _posts/*/*.png
 
 # Default layouts
 defaults:
