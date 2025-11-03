@@ -83,7 +83,7 @@ All internal links must use `{{ site.baseurl }}` to work correctly:
 
 1. **Create the post structure:**
    - Create post directory: `_posts/YYYY-MM-DD-descriptive-title/`
-   - Create `index.md` in that directory with YAML front matter:
+   - Create `index.md` in that directory with YAML front matter (REQUIRED):
      ```markdown
      ---
      layout: post
@@ -94,6 +94,7 @@ All internal links must use `{{ site.baseurl }}` to work correctly:
 
      Content here...
      ```
+   - ⚠️ **CRITICAL**: Missing front matter causes Jekyll build failures. Always verify `---` delimiters and required fields.
 
 2. **Create assets:**
    - Create assets directory: `assets/images/posts/YYYY-MM-DD-descriptive-title/`
@@ -206,7 +207,19 @@ The site uses a custom dark theme defined in `_layouts/default.html`:
 
 - **Always use `{{ site.baseurl }}`** in URLs for correct path resolution
 - Presentations must be completely self-contained (no external dependencies)
-- Home page (`index.html`) has hardcoded content counts that need manual updates
+- Home page (`index.html`) presentations section has hardcoded content that needs manual updates
 - No external CSS/JS files - all styles are embedded in layouts
 - The site uses Inter font loaded from Google Fonts
 - Jekyll permalink pattern: `/blog/:year/:month/:day/:title/`
+- `CLAUDE.md` is excluded from Jekyll processing (can safely contain Liquid syntax examples)
+
+## Troubleshooting Build Failures
+
+**Jekyll build error: "Liquid syntax error" or "'for' tag was never closed"**
+- Blog post missing YAML front matter (see required format above)
+- Unclosed Liquid tags in content files
+- Check all new `.md` files have proper `---` delimiters
+
+**Content not appearing:**
+- Blog posts: Verify front matter exists and date is not in the future
+- Presentations: Check both `index.html` and `presentations/index.html` updated manually

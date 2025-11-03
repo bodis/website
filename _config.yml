@@ -16,6 +16,7 @@ exclude:
   - .git/
   - .gitignore
   - README.md
+  - CLAUDE.md
 
 # Collections for different content types
 collections:

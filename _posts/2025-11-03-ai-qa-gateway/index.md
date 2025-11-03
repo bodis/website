@@ -1,4 +1,9 @@
-# Closing the Loop: An Automated Quality Gateway for AI-Assisted Development
+---
+layout: post
+title: "Closing the Loop: An Automated Quality Gateway for AI-Assisted Development"
+date: 2025-11-03 00:00:00 +0000
+categories: ai development qa automation
+---
 
 *Building on: [The Hard Parts of AI-Assisted Development](https://bodis.github.io/website/blog/2025/11/01/ai-coding-reality-check-index/)*
 
