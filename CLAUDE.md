@@ -81,36 +81,108 @@ All internal links must use `{{ site.baseurl }}` to work correctly:
 
 ### New Blog Post
 
-1. Create post directory: `_posts/YYYY-MM-DD-descriptive-title/`
-2. Create `index.md` in that directory with YAML front matter:
-   ```markdown
-   ---
-   layout: post
-   title: "Your Post Title"
-   date: 2025-11-01 12:00:00 +0000
-   categories: category1 category2
-   ---
+1. **Create the post structure:**
+   - Create post directory: `_posts/YYYY-MM-DD-descriptive-title/`
+   - Create `index.md` in that directory with YAML front matter:
+     ```markdown
+     ---
+     layout: post
+     title: "Your Post Title"
+     date: 2025-11-01 12:00:00 +0000
+     categories: category1 category2
+     ---
 
-   Content here...
-   ```
-3. Create assets directory: `assets/images/posts/YYYY-MM-DD-descriptive-title/`
-4. Add `thumbnail.jpg` (recommended) to assets directory for blog listing page
-5. Add any post-specific images to the assets directory
-6. Reference images using: `![Description]({{ site.baseurl }}/assets/images/posts/YYYY-MM-DD-descriptive-title/image.webp)`
-7. Update home page listing count if needed in `index.html`
+     Content here...
+     ```
+
+2. **Create assets:**
+   - Create assets directory: `assets/images/posts/YYYY-MM-DD-descriptive-title/`
+   - Add `thumbnail.jpg` (recommended) to assets directory for blog listing page
+   - Add any post-specific images to the assets directory
+   - Reference images using: `![Description]({{ site.baseurl }}/assets/images/posts/YYYY-MM-DD-descriptive-title/image.webp)`
+
+3. **Update listings (IMPORTANT - Read carefully):**
+   - ✅ **Automatic**: `blog/index.html` - Jekyll automatically lists all posts via `{% for post in site.posts %}`
+   - ✅ **Automatic**: Home page blog section (`index.html`) - Uses Jekyll templating to show latest posts
+   - ❌ **No updates needed** - Blog posts are fully automated!
+
+**Notes:**
+- Blog posts appear automatically when Jekyll builds - no manual listing updates required
+- The blog count is also automatic via `{{ site.posts.size }}`
+- Just create the post files and assets - Jekyll handles the rest
 
 ### New Presentation
 
-1. Create directory: `presentations/YYYYMMDD-presentation-name/`
-2. Add self-contained `index.html` with all CSS/JS embedded
-3. Update `index.html` to add link in presentations section
-4. Ensure presentation directory is excluded from Jekyll processing
+1. **Create the presentation:**
+   - Create directory: `presentations/YYYYMMDD-presentation-name/`
+   - Add self-contained `index.html` with all CSS/JS embedded
+   - Ensure presentation directory is excluded from Jekyll processing in `_config.yml`
+
+2. **Update ALL listing pages (CRITICAL - Must update manually):**
+
+   **File: `index.html` (Home page)**
+   - Update presentation count in section header (e.g., "1 presentation" → "2 presentations")
+   - Add new presentation entry to the `<ul class="content-list">` at the TOP (newest first)
+   - Format:
+     ```html
+     <li>
+       <a href="{{ site.baseurl }}/presentations/YYYYMMDD-name/index.html" class="content-link">
+         <span class="content-title">Presentation Title</span>
+         <span class="content-date">Mon DD, YYYY</span>
+       </a>
+     </li>
+     ```
+
+   **File: `presentations/index.html` (Presentations listing page)**
+   - Add new presentation article at the TOP of `<div class="presentations-list">` (newest first)
+   - Format:
+     ```html
+     <article class="presentation-item">
+       <div class="presentation-meta">
+         <span class="presentation-date">Month DD, YYYY</span>
+         <span class="presentation-type">Type (e.g., Technical Deep Dive, Interactive Demo)</span>
+       </div>
+       <h2>
+         <a href="{{ site.baseurl }}/presentations/YYYYMMDD-name/index.html">
+           Presentation Title
+         </a>
+       </h2>
+       <p class="presentation-description">
+         Brief description of what the presentation covers...
+       </p>
+       <a href="{{ site.baseurl }}/presentations/YYYYMMDD-name/index.html" class="view-presentation">
+         View Presentation →
+       </a>
+     </article>
+     ```
+
+**Checklist for adding a presentation:**
+- [ ] Create presentation files in `presentations/YYYYMMDD-name/`
+- [ ] Update count in `index.html` presentations section
+- [ ] Add presentation entry to `index.html` content list (top of list)
+- [ ] Add presentation article to `presentations/index.html` (top of list)
+- [ ] Verify both pages use correct date format and `{{ site.baseurl }}` in URLs
 
 ### New Documentation
 
 1. Add markdown file to `docs/`
 2. Update `index.html` to link to it in documentation section
 3. Update section count in `index.html`
+
+## Content Update Quick Reference
+
+When adding new content, here's what needs updating:
+
+| Content Type | Automatic Listings | Manual Updates Required |
+|--------------|-------------------|-------------------------|
+| **Blog Post** | • `blog/index.html`<br>• `index.html` blog section<br>• Post counts | None - fully automated! |
+| **Presentation** | None | • `index.html` (count + entry)<br>• `presentations/index.html` (full article) |
+| **Documentation** | None | • `index.html` (count + entry) |
+
+**Why the difference?**
+- Blog posts use Jekyll's dynamic `site.posts` collection - fully automated
+- Presentations are static HTML files excluded from Jekyll processing - require manual listing
+- Documentation is minimal and rarely updated - manual listing is acceptable
 
 ## Design System
 
