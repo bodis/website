@@ -43,7 +43,7 @@ This is where I extended the traditional QA gateway pattern. I kept all the prov
 
 The beauty of the gateway pattern is its flexibility. You can connect almost any type of validation you want. Need to check API contract compatibility? Add a validator. Want to enforce architectural boundaries? Plug in ArchUnit. Need to verify compliance with GDPR requirements? Build a custom rule. The gateway doesn't care—it orchestrates, aggregates, and reports.
 
-Want to see this in action? I built an [interactive demonstration](https://bodis.github.io/website/presentations/20251103-qa-pipeline-demo/index.html) that walks through the entire flow from PR creation to automated review.
+Want to see this in action? I built an *[interactive demonstration]({{ site.baseurl }}/presentations/20251103-qa-pipeline-demo/index.html)* that walks through the entire flow from PR creation to automated review.
 
 ## The Automated Pipeline: From PR to Feedback
 
@@ -81,7 +81,6 @@ This is where AI enters the picture. Multiple specialized review aspects examine
 
 Each review aspect runs with the context of what came before. The security reviewer knows what the linter found. The architecture reviewer sees both. This sequential context building helps avoid duplicate findings and enables deeper analysis.
 
-*[Demonstration of the flow]({{ site.baseurl }}/presentation/20251103-qa-pipeline-demo/)*
 
 ## Change Intelligence: Context-Aware Analysis
 
