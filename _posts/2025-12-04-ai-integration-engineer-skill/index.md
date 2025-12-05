@@ -15,7 +15,7 @@ You know how it goes. Someone pings you on Slack: "Hey, can you check why the cu
 
 Seems straightforward, right? Except now you're about to open seven different browser tabs, switch between four authentication contexts, and try to remember whether this particular environment uses the "tst1" or "uat8" naming convention. Again.
 
-Welcome to my life as an Integration Engineer at Yettel, where answering what sounds like a simple question means running a marathon across our infrastructure landscape. Every. Single. Time.
+Welcome to my life as an Integration Engineer at a company, where answering what sounds like a simple question means running a marathon across our infrastructure landscape. Every. Single. Time.
 
 ## A Tour of Our Tooling Maze
 
@@ -43,13 +43,13 @@ I search Tyk Dashboard for anything containing ID00005832. Plot twist: there are
 
 Once I've figured out which API we're dealing with, I pull its configuration from Tyk, then jump to GitLab to find the source `values.yaml`. That file references a SwaggerHub spec, so now I'm in SwaggerHub checking the OpenAPI definition. While I'm there, I notice there are three newer versions of the spec. Should probably check if those matter.
 
-Back to JIRA to document my findings.
+![Getting Started]({{ site.baseurl }}/assets/images/posts/2025-12-04-ai-integration-engineer-skill/step1.webp)
+
+And back to JIRA to document my findings.
 
 That's thirteen distinct steps across five different systems. And I haven't actually fixed anything yet - this is just the *investigation*.
 
 ## The Lightbulb Moment: What If I Didn't Have To Do This?
-
-![Getting Started]({{ site.baseurl }}/assets/images/posts/2025-12-04-ai-integration-engineer-skill/step1.webp)
 
 I'd written scripts before. Plenty of them. But automating individual tasks wasn't the real problem. The cognitive load was the killer - remembering which system uses which identifier format, keeping track of where I was in the investigation flow, and context-switching so much that I started having dreams about opening new browser tabs.
 
@@ -73,6 +73,8 @@ Claude Code's skill system offered a different approach entirely. Instead of bui
 The insight that changed everything: **the AI doesn't need a complex protocol. It just needs good tools and clear instructions.**
 
 Turns out, teaching an AI is a lot like teaching a very smart intern who takes everything literally and never gets tired of repetitive tasks.
+
+![Work in Progress]({{ site.baseurl }}/assets/images/posts/2025-12-04-ai-integration-engineer-skill/inprogress.webp)
 
 ## Building It: One Tool at a Time
 
@@ -218,13 +220,11 @@ This workflow also points to additional documentation about Helm configuration s
 
 ## How It All Builds
 
-![Work in Progress]({{ site.baseurl }}/assets/images/posts/2025-12-04-ai-integration-engineer-skill/inprogress.webp)
-
 The skill has a build process that assembles everything:
 
 ```
 skills/                           # Source (edit here)
-└── yettel-integration-engineer/
+└── company-integration-engineer/
     ├── SKILL.md
     └── workflows/
         ├── api-investigation.md
@@ -235,7 +235,7 @@ tyk/                              # CLI docs
 └── ...
 
 skill_dist/                       # Built artifact
-└── yettel-integration-engineer/
+└── company-integration-engineer/
     ├── SKILL.md
     ├── workflows/
     ├── tools/
@@ -268,7 +268,7 @@ Searched Tyk directly with free text, got no results.
 
 **Fix:** Made Integration Naming the explicit "START HERE" in every workflow.
 
-Each failure made the documentation better. The AI never got frustrated with my corrections, which is refreshing compared to explaining things to actual humans.
+Each failure made the documentation better. The AI never got frustrated with my corrections, which is refreshing compared to explaining things to actual humans. But sometimes still forgetting some instructions I have already told him before.
 
 ## What It Looks Like in Practice
 
