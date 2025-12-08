@@ -576,3 +576,7 @@ The AI handles the rest.
 ![Final Result]({{ site.baseurl }}/assets/images/posts/2025-12-04-ai-integration-engineer-skill/final.webp)
 
 *This skill represents an ongoing evolution in how I work. Each iteration makes the system smarter, each new use case reveals opportunities. The AI learns from better documentation, not from complex training. And honestly? That's the best part.*
+
+---
+
+*Do you have any ideas, comments, or anything to add on this topic? Contact me: [LinkedIn](https://www.linkedin.com/in/tamas-bodis)*

@@ -108,3 +108,5 @@ By 2028, 75% of enterprise developers will use AI coding assistants. Organizatio
 ---
 
 *This post was researched and drafted with AI assistance, then substantially edited and verified.*
+
+*Do you have any ideas, comments, or anything to add on this topic? Contact me: [LinkedIn](https://www.linkedin.com/in/tamas-bodis)*

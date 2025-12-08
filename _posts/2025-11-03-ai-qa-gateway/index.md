@@ -244,3 +244,7 @@ Now go build your own version. You'll find issues I didn't anticipate. You'll di
 *This article describes patterns implemented in [ai-review-cicd-actions](https://github.com/bodis/ai-review-cicd-actions), an open-source demonstration project. The project uses these review patterns on its own code—see [PR #4](https://github.com/bodis/ai-review-cicd-actions/pull/4) for a meta example of the system reviewing itself.*
 
 *Related reading: [The Hard Parts of AI-Assisted Development](https://bodis.github.io/website/blog/2025/11/01/ai-coding-reality-check-index/)—the research and analysis that motivated building this system.*
+
+---
+
+*Do you have any ideas, comments, or anything to add on this topic? Contact me: [LinkedIn](https://www.linkedin.com/in/tamas-bodis)*
