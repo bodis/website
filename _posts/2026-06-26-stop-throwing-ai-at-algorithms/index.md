@@ -7,6 +7,8 @@ categories: ai automation devops
 
 <p class="post-lead">A token-optimization menu, and the orchestrator I deleted.</p>
 
+![An ornate, over-engineered mechanical AI brain looming over a tiny, simple glowing loop on a pedestal]({{ site.baseurl }}/assets/images/posts/2026-06-26-stop-throwing-ai-at-algorithms/hero.jpg)
+
 There's a particular kind of embarrassment that only hits experienced engineers. It's the moment you realize you reached for the most expensive, most complicated tool in the shed to solve a problem that a `for` loop would have handled before your coffee got cold. This is a post about that feeling, and about all the clever things we do to make AI cheaper *after* we've already decided — often wrongly — that we needed AI at all.
 
 Let me start with the part where I was the fool.
@@ -102,6 +104,8 @@ Only once you've honestly answered *"yes, this part needs a model"* does the res
 ---
 
 ## The menu
+
+![Seven stacked glass slabs descending from cool, calm blue at the top to unstable, crackling red-violet energy at the bottom]({{ site.baseurl }}/assets/images/posts/2026-06-26-stop-throwing-ai-at-algorithms/the-menu.jpg)
 
 Say you've decided AI genuinely earns its place. Now the question is how hard to work at keeping it cheap — and the honest answer is **it depends entirely on your workload**. Some of these techniques will save you a fortune. Some will do nothing for your particular use case. And at least one of them can actively *corrupt your output* if you apply it to the wrong content. Treat this as a buffet, not a checklist.
 
@@ -201,6 +205,8 @@ And there are more techniques than this — network-level deduplication, schema-
 ---
 
 ## So… should you optimize at all?
+
+![A balance scale, one pan holding glowing tokens burning away into sparks, the other a small steady flame, the beam tilted almost imperceptibly]({{ site.baseurl }}/assets/images/posts/2026-06-26-stop-throwing-ai-at-algorithms/optimize-or-not.jpg)
 
 Here's the contrarian closer. Having listed seven layers of optimization, I want to argue that for a lot of work you should use **none of them**.
 
