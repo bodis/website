@@ -8,6 +8,7 @@ title: Blog
   <p class="blog-subtitle">Thoughts, tutorials, and insights on software development</p>
 </div>
 
+{% assign series_part_1 = site.posts | where: "title", "The System Nobody Can Read" | first %}
 <section class="series-banner">
   <div class="series-banner-head">
     <span class="series-eyebrow">Blog Series</span>
@@ -20,7 +21,7 @@ title: Blog
   </p>
   <ol class="series-parts">
     <li class="series-part is-published">
-      <a href="{{ site.baseurl }}/blog/2026/07/14/the-system-nobody-can-read/">
+      <a href="{{ series_part_1.url | relative_url }}">
         <span class="series-part-num">01</span>
         <span class="series-part-title">The System Nobody Can Read</span>
         <span class="series-part-status">Read now →</span>
