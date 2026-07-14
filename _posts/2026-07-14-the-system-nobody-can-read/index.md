@@ -3,6 +3,7 @@ layout: post
 title: "The System Nobody Can Read"
 date: 2026-07-14 00:00:00 +0000
 categories: ai architecture legacy
+series: "Teaching a Legacy System to Explain Itself"
 ---
 
 <p class="post-lead">Post 1 of a series on teaching a legacy system to explain itself.</p>

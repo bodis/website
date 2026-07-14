@@ -60,9 +60,11 @@ title: Blog
   </ol>
 </section>
 
-{% if site.posts.size > 0 %}
+{% comment %} Series posts live in the banner above; keep them out of the chronological grid. {% endcomment %}
+{% assign grid_posts = site.posts | where_exp: "item", "item.series == nil" %}
+{% if grid_posts.size > 0 %}
   <div class="post-grid">
-    {% for post in site.posts %}
+    {% for post in grid_posts %}
       <article class="post-card">
         {% assign post_slug = post.path | remove: '_posts/' | remove: '/index.md' %}
         {% assign thumbnail_url = site.baseurl | append: '/assets/images/posts/' | append: post_slug | append: '/thumbnail.jpg' %}
@@ -317,9 +319,11 @@ title: Blog
   }
 
   .post-card {
-    background: var(--bg-secondary);
+    background:
+      radial-gradient(120% 140% at 100% 0%, rgba(139, 92, 246, 0.12), transparent 60%),
+      var(--bg-secondary);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 16px;
     padding: 32px;
     transition: all 0.3s ease;
     position: relative;
@@ -373,7 +377,7 @@ title: Blog
     right: 0;
     height: 3px;
     background: linear-gradient(to right, var(--primary), var(--secondary));
-    transform: scaleX(0);
+    transform: scaleX(1);
     transform-origin: left;
     transition: transform 0.3s ease;
   }
