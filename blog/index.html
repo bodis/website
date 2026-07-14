@@ -8,6 +8,57 @@ title: Blog
   <p class="blog-subtitle">Thoughts, tutorials, and insights on software development</p>
 </div>
 
+<section class="series-banner">
+  <div class="series-banner-head">
+    <span class="series-eyebrow">Blog Series</span>
+    <span class="series-progress">Part 1 of 7</span>
+  </div>
+  <h2 class="series-title">Teaching a Legacy System to Explain Itself</h2>
+  <p class="series-tagline">
+    How do you document — and truly understand — a really large legacy system? A seven-part walk
+    from the black box to a continuously-true, queryable model.
+  </p>
+  <ol class="series-parts">
+    <li class="series-part is-published">
+      <a href="{{ site.baseurl }}/blog/2026/07/14/the-system-nobody-can-read/">
+        <span class="series-part-num">01</span>
+        <span class="series-part-title">The System Nobody Can Read</span>
+        <span class="series-part-status">Read now →</span>
+      </a>
+    </li>
+    <li class="series-part is-upcoming">
+      <span class="series-part-num">02</span>
+      <span class="series-part-title">Why "Just Ask the AI" Breaks at Scale</span>
+      <span class="series-part-status">Coming soon</span>
+    </li>
+    <li class="series-part is-upcoming">
+      <span class="series-part-num">03</span>
+      <span class="series-part-title">Stop Retrieving. Start Modeling.</span>
+      <span class="series-part-status">Coming soon</span>
+    </li>
+    <li class="series-part is-upcoming">
+      <span class="series-part-num">04</span>
+      <span class="series-part-title">How You Actually Build the Map</span>
+      <span class="series-part-status">Coming soon</span>
+    </li>
+    <li class="series-part is-upcoming">
+      <span class="series-part-num">05</span>
+      <span class="series-part-title">Keeping It True When the Code Moves</span>
+      <span class="series-part-status">Coming soon</span>
+    </li>
+    <li class="series-part is-upcoming">
+      <span class="series-part-num">06</span>
+      <span class="series-part-title">Documentation That Gets Smarter</span>
+      <span class="series-part-status">Coming soon</span>
+    </li>
+    <li class="series-part is-upcoming">
+      <span class="series-part-num">07</span>
+      <span class="series-part-title">One Model, Many Views — and the Honest Frontier</span>
+      <span class="series-part-status">Coming soon</span>
+    </li>
+  </ol>
+</section>
+
 {% if site.posts.size > 0 %}
   <div class="post-grid">
     {% for post in site.posts %}
@@ -59,6 +110,183 @@ title: Blog
 {% endif %}
 
 <style>
+  /* ---- Series banner ---- */
+  .series-banner {
+    background:
+      radial-gradient(120% 140% at 100% 0%, rgba(139, 92, 246, 0.12), transparent 60%),
+      var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    margin: 0 0 48px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .series-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+  }
+
+  .series-banner-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  .series-eyebrow {
+    color: var(--primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .series-progress {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: rgba(102, 126, 234, 0.12);
+    border: 1px solid rgba(102, 126, 234, 0.3);
+    padding: 4px 12px;
+    border-radius: 999px;
+  }
+
+  .series-title {
+    font-size: clamp(1.6rem, 3.5vw, 2.25rem);
+    line-height: 1.2;
+    margin: 0 0 12px 0;
+    background: linear-gradient(to right, var(--text-primary), var(--primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .series-tagline {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 60ch;
+    margin: 0 0 28px 0;
+  }
+
+  .series-parts {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .series-part a,
+  .series-part {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 16px;
+    border-radius: 10px;
+    text-decoration: none;
+  }
+
+  .series-part-num {
+    font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    width: 2ch;
+  }
+
+  .series-part-title {
+    flex-grow: 1;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .series-part-status {
+    flex-shrink: 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Published part — interactive */
+  .series-part.is-published {
+    padding: 0;
+    border: 1px solid transparent;
+  }
+
+  .series-part.is-published a {
+    width: 100%;
+    background: rgba(102, 126, 234, 0.08);
+    border: 1px solid rgba(102, 126, 234, 0.25);
+    transition: all 0.25s ease;
+  }
+
+  .series-part.is-published .series-part-num {
+    color: var(--primary);
+  }
+
+  .series-part.is-published .series-part-title {
+    color: var(--text-primary);
+  }
+
+  .series-part.is-published .series-part-status {
+    color: var(--primary);
+  }
+
+  .series-part.is-published a:hover {
+    background: rgba(102, 126, 234, 0.16);
+    border-color: var(--primary);
+    transform: translateX(4px);
+  }
+
+  /* Upcoming parts — muted, non-interactive */
+  .series-part.is-upcoming {
+    opacity: 0.55;
+  }
+
+  .series-part.is-upcoming .series-part-title {
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .series-part.is-upcoming .series-part-status {
+    color: var(--text-muted);
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0;
+    font-style: italic;
+  }
+
+  @media (max-width: 600px) {
+    .series-banner {
+      padding: 24px;
+    }
+
+    .series-part a,
+    .series-part {
+      flex-wrap: wrap;
+      gap: 8px 12px;
+    }
+
+    .series-part-status {
+      width: 100%;
+      padding-left: calc(2ch + 12px);
+    }
+  }
+
   .blog-header {
     text-align: center;
     margin-bottom: 48px;
